@@ -14,6 +14,8 @@ python3.12 -m venv .venv
 
 Or run the GUI directly with `.venv/bin/python -X utf8 -B run_linux.py`.
 
+On macOS, the same procedure applies: create the environment with Python 3.12 (with tkinter), install Pillow, then run `./start.sh` or `.venv/bin/python -X utf8 -B run_linux.py`.
+
 Start learning with the [seven-case guide](GUIDE.html). A [Markdown copy](GUIDE.md) and the separate [API reference](docs/guide/api-reference.html) are included. The workbench's **Help** opens the guide and the actual rules for your selected scenario.
 
 Choose **Straight path**, then **Run solution**. An unfinished-code message is expected: all six student components start as TODOs. **Watch example** shows a supplied recording; it does not complete or replace your code. Save edits before using **Run again**.
