@@ -1,0 +1,40 @@
+{
+  "kind": "rejected level-assembly illustration; not a playable admitted envelope",
+  "parent_input": "examples/guide/levels/branching-junction.json",
+  "terrain_validation": "PASS",
+  "level_validation": "TREE_ENDPOINT_NOT_LEAF",
+  "reason": "Proposed exit (1,2) has four floor neighbors and is not a leaf.",
+  "candidate": {
+    "format": "ultra-generation",
+    "version": 1,
+    "kind": "level",
+    "level_id": "adventure-t2-a",
+    "profile_id": "ADV-T2-A-DEV",
+    "seed": 11,
+    "terrain": {
+      "format": "ultra-generation",
+      "version": 1,
+      "kind": "terrain",
+      "terrain_rows": [
+        "##.##",
+        ".....",
+        "##.##",
+        "##.##"
+      ]
+    },
+    "start": {
+      "row": 1,
+      "column": 0
+    },
+    "exit": {
+      "row": 1,
+      "column": 2
+    },
+    "character": {
+      "agent_id": "explorer"
+    },
+    "artifacts": [],
+    "enemies": [],
+    "patrols": []
+  }
+}

@@ -1,0 +1,403 @@
+{
+  "all_upstream_runtime_and_wheel_members_retained": true,
+  "art_redistribution_approved": false,
+  "artifact_sources": {
+    "pillow": {
+      "bytes": 7227137,
+      "filename": "pillow-12.3.0-cp312-cp312-win_amd64.whl",
+      "license_file": "pillow-12.3.0.dist-info/licenses/LICENSE",
+      "publisher": "Pillow on PyPI",
+      "sha256": "a2b55dd6b2a4c4b7d87ffa56bdb33fdc5fdb9a462173861a7bc097f17d91cb09",
+      "url": "https://files.pythonhosted.org/packages/45/89/da2f7971a317f83d807fdd4065c0af40208e59e692cc43d315a71a0e96d1/pillow-12.3.0-cp312-cp312-win_amd64.whl"
+    },
+    "runtime": {
+      "bytes": 46097715,
+      "directory": "cpython-3.12.14-windows-x64",
+      "filename": "cpython-3.12.14+20260814-x86_64-pc-windows-msvc-install_only.tar.gz",
+      "license_file": "LICENSE.txt",
+      "publisher": "Astral python-build-standalone",
+      "sha256": "7330282b47cd43a66b702d39078d2e5a88e580cee351d82f95045f21f5ee042a",
+      "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20260814/cpython-3.12.14%2B20260814-x86_64-pc-windows-msvc-install_only.tar.gz"
+    }
+  },
+  "classroom_release_approved": false,
+  "development_only": true,
+  "ensurepip_25_vendor_notice_coverage": [
+    {
+      "bytes": 558,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/cachecontrol/LICENSE.txt",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/cachecontrol/LICENSE.txt",
+      "redundant_header": false,
+      "sha256": "86eeee87be2a43f3ff1f56496f451f69243926f025fedbb033666c304c4c161b",
+      "source_path": "src/pip/_vendor/cachecontrol/LICENSE.txt"
+    },
+    {
+      "bytes": 989,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/certifi/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/certifi/LICENSE",
+      "redundant_header": false,
+      "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7",
+      "source_path": "src/pip/_vendor/certifi/LICENSE"
+    },
+    {
+      "bytes": 14531,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/distlib/LICENSE.txt",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/distlib/LICENSE.txt",
+      "redundant_header": false,
+      "sha256": "808e10c8a6ab8deb149ff9b3fb19f447a808094606d712a9ca57fead3552599d",
+      "source_path": "src/pip/_vendor/distlib/LICENSE.txt"
+    },
+    {
+      "bytes": 11325,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/distro/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/distro/LICENSE",
+      "redundant_header": false,
+      "sha256": "cb5e8e7e5f4a3988e1063c142c60dc2df75605f4c46515e776e3aca6df976e14",
+      "source_path": "src/pip/_vendor/distro/LICENSE"
+    },
+    {
+      "bytes": 1541,
+      "identical_retained_pip26_notice": false,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/idna/LICENSE.md",
+      "public_notice_path": "licenses/pip25-vendor/idna/LICENSE.md",
+      "redundant_header": false,
+      "sha256": "a59f0b0ef3635874109a4461ca44ff7a70d50696e814767bfaf721d4c9b0db0f",
+      "source_path": "src/pip/_vendor/idna/LICENSE.md"
+    },
+    {
+      "bytes": 614,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/msgpack/COPYING",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/msgpack/COPYING",
+      "redundant_header": false,
+      "sha256": "492dedba85da5872f78e6091bcd1fea474d660d35acb4dee964b8aab3f007427",
+      "source_path": "src/pip/_vendor/msgpack/COPYING"
+    },
+    {
+      "bytes": 197,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/packaging/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/packaging/LICENSE",
+      "redundant_header": false,
+      "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48",
+      "source_path": "src/pip/_vendor/packaging/LICENSE"
+    },
+    {
+      "bytes": 10174,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/packaging/LICENSE.APACHE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/packaging/LICENSE.APACHE",
+      "redundant_header": false,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "source_path": "src/pip/_vendor/packaging/LICENSE.APACHE"
+    },
+    {
+      "bytes": 1344,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/packaging/LICENSE.BSD",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/packaging/LICENSE.BSD",
+      "redundant_header": false,
+      "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5",
+      "source_path": "src/pip/_vendor/packaging/LICENSE.BSD"
+    },
+    {
+      "bytes": 1023,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/pkg_resources/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/pkg_resources/LICENSE",
+      "redundant_header": false,
+      "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
+      "source_path": "src/pip/_vendor/pkg_resources/LICENSE"
+    },
+    {
+      "bytes": 1089,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/platformdirs/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/platformdirs/LICENSE",
+      "redundant_header": false,
+      "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6",
+      "source_path": "src/pip/_vendor/platformdirs/LICENSE"
+    },
+    {
+      "bytes": 1331,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/pygments/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/pygments/LICENSE",
+      "redundant_header": false,
+      "sha256": "a9d66f1d526df02e29dce73436d34e56e8632f46c275bbdffc70569e882f9f17",
+      "source_path": "src/pip/_vendor/pygments/LICENSE"
+    },
+    {
+      "bytes": 1081,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/pyproject_hooks/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/pyproject_hooks/LICENSE",
+      "redundant_header": false,
+      "sha256": "1b22b049b5267d6dfc23a67bf4a84d8ec04b9fdfb1a51d360e42b4342c8b4154",
+      "source_path": "src/pip/_vendor/pyproject_hooks/LICENSE"
+    },
+    {
+      "bytes": 10142,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/requests/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/requests/LICENSE",
+      "redundant_header": false,
+      "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+      "source_path": "src/pip/_vendor/requests/LICENSE"
+    },
+    {
+      "bytes": 751,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/resolvelib/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/resolvelib/LICENSE",
+      "redundant_header": false,
+      "sha256": "f388fd38cad13112c1dc0f669bbe80e7f84541edbafb72f3030d2ca7642c3c9d",
+      "source_path": "src/pip/_vendor/resolvelib/LICENSE"
+    },
+    {
+      "bytes": 1056,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/rich/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/rich/LICENSE",
+      "redundant_header": false,
+      "sha256": "deed7c17a4318158190a3ea239cc879a5a50271cebb98ae7025f48fbe58dca15",
+      "source_path": "src/pip/_vendor/rich/LICENSE"
+    },
+    {
+      "bytes": 1072,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/tomli/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/tomli/LICENSE",
+      "redundant_header": false,
+      "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe",
+      "source_path": "src/pip/_vendor/tomli/LICENSE"
+    },
+    {
+      "bytes": 121,
+      "identical_retained_pip26_notice": false,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/tomli/LICENSE-HEADER",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/tomli/LICENSE",
+      "redundant_header": true,
+      "sha256": "97ce9330905a172dde870ee0361d89beb95ba3bd0f4545796aa91a8c01a43531",
+      "source_path": "src/pip/_vendor/tomli/LICENSE-HEADER"
+    },
+    {
+      "bytes": 1086,
+      "identical_retained_pip26_notice": true,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/truststore/LICENSE",
+      "public_notice_path": ".setup-payload/python/Lib/site-packages/pip-26.2.1.dist-info/licenses/src/pip/_vendor/truststore/LICENSE",
+      "redundant_header": false,
+      "sha256": "33be7b7e8fa4fd19b1760e1a8ed8a668bdab852c91b692dd41424bcb725a9fca",
+      "source_path": "src/pip/_vendor/truststore/LICENSE"
+    },
+    {
+      "bytes": 13936,
+      "identical_retained_pip26_notice": false,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/typing_extensions.LICENSE",
+      "public_notice_path": "licenses/pip25-vendor/typing_extensions.LICENSE",
+      "redundant_header": false,
+      "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+      "source_path": "src/pip/_vendor/typing_extensions.LICENSE"
+    },
+    {
+      "bytes": 1115,
+      "identical_retained_pip26_notice": false,
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/urllib3/LICENSE.txt",
+      "public_notice_path": "licenses/pip25-vendor/urllib3/LICENSE.txt",
+      "redundant_header": false,
+      "sha256": "c37bf186e27cf9dbe9619e55edfe3cea7b30091ceb3da63c7dacbe0e6d77907b",
+      "source_path": "src/pip/_vendor/urllib3/LICENSE.txt"
+    }
+  ],
+  "format": "ultra-third-party-provenance",
+  "legal_approval_granted": false,
+  "notices": [
+    {
+      "bytes": 16725,
+      "file": "LICENSE",
+      "origin_url": "https://raw.githubusercontent.com/astral-sh/python-build-standalone/20260814/LICENSE",
+      "path": "licenses/astral-build-tooling-MPL-2.0.txt",
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 1743,
+      "file": "LICENSE.bzip2.txt",
+      "origin_url": "https://raw.githubusercontent.com/astral-sh/python-build-standalone/20260814/LICENSE.bzip2.txt",
+      "path": "licenses/LICENSE.bzip2.txt",
+      "sha256": "1f38bbc7caacafd65169276d759c0d88c991b753b643ce35d0e45ea1971dd441",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 1144,
+      "file": "LICENSE.expat.txt",
+      "origin_url": "https://raw.githubusercontent.com/astral-sh/python-build-standalone/20260814/LICENSE.expat.txt",
+      "path": "licenses/LICENSE.expat.txt",
+      "sha256": "122f2c27000472a201d337b9b31f7eb2b52d091b02857061a8880371612d9534",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 1132,
+      "file": "LICENSE.libffi.txt",
+      "origin_url": "https://raw.githubusercontent.com/astral-sh/python-build-standalone/20260814/LICENSE.libffi.txt",
+      "path": "licenses/LICENSE.libffi.txt",
+      "sha256": "deaf3a42effb551a5b140fa9afefed183a27f1341c6d1bf430d106a5e6931fc0",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 660,
+      "file": "LICENSE.liblzma.txt",
+      "origin_url": "https://raw.githubusercontent.com/astral-sh/python-build-standalone/20260814/LICENSE.liblzma.txt",
+      "path": "licenses/LICENSE.liblzma.txt",
+      "sha256": "9a4062de0a2c388a98cf35a35d348b62fa97c838a71c3c28ee1a2d7d0a565b02",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 10175,
+      "file": "LICENSE.openssl-3.txt",
+      "origin_url": "https://raw.githubusercontent.com/astral-sh/python-build-standalone/20260814/LICENSE.openssl-3.txt",
+      "path": "licenses/LICENSE.openssl-3.txt",
+      "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 1481,
+      "file": "LICENSE.sqlite.txt",
+      "origin_url": "https://raw.githubusercontent.com/astral-sh/python-build-standalone/20260814/LICENSE.sqlite.txt",
+      "path": "licenses/LICENSE.sqlite.txt",
+      "sha256": "38bef3d28b24f145ea293bd3b6eb4b20396982abc8303128fb493986ea5bc719",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 2255,
+      "file": "LICENSE.tcl.txt",
+      "origin_url": "https://raw.githubusercontent.com/astral-sh/python-build-standalone/20260814/LICENSE.tcl.txt",
+      "path": "licenses/LICENSE.tcl.txt",
+      "sha256": "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 2826,
+      "file": "LICENSE.tix.txt",
+      "origin_url": "https://raw.githubusercontent.com/astral-sh/python-build-standalone/20260814/LICENSE.tix.txt",
+      "path": "licenses/LICENSE.tix.txt",
+      "sha256": "3ac5cdd0bef6c43ce34c6a7ced452081d9e5a0bf94082b9f9147d23ec9e214f5",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 995,
+      "file": "LICENSE.zlib.txt",
+      "origin_url": "https://raw.githubusercontent.com/astral-sh/python-build-standalone/20260814/LICENSE.zlib.txt",
+      "path": "licenses/LICENSE.zlib.txt",
+      "sha256": "818922b2620f12801a12bf78e399644a30990e66824abd8ca8ec24d451d6f92c",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 10175,
+      "file": "openssl-3.5.7-LICENSE.txt",
+      "origin_url": "https://raw.githubusercontent.com/openssl/openssl/openssl-3.5.7/LICENSE.txt",
+      "path": "licenses/openssl-3.5.7-LICENSE.txt",
+      "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 1144,
+      "file": "expat-2.8.3-COPYING.txt",
+      "origin_url": "https://raw.githubusercontent.com/libexpat/libexpat/R_2_8_3/expat/COPYING",
+      "path": "licenses/expat-2.8.3-COPYING.txt",
+      "sha256": "31b15de82aa19a845156169a17a5488bf597e561b2c318d159ed583139b25e87",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 2255,
+      "file": "tcl-8.6.12-license.terms",
+      "origin_url": "https://raw.githubusercontent.com/tcltk/tcl/core-8-6-12/license.terms",
+      "path": "licenses/tcl-8.6.12-license.terms",
+      "sha256": "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 2267,
+      "file": "tk-8.6.12-license.terms",
+      "origin_url": "https://raw.githubusercontent.com/tcltk/tk/core-8-6-12/license.terms",
+      "path": "licenses/tk-8.6.12-license.terms",
+      "sha256": "2cde822b93ca16ae535c954b7dfe658b4ad10df2a193628d1b358f1765e8b198",
+      "source_form": "verbatim upstream file"
+    },
+    {
+      "bytes": 1359,
+      "file": "cpython-3.12.14-mpdecimal-notice.txt",
+      "origin_url": "https://raw.githubusercontent.com/python/cpython/v3.12.14/Modules/_decimal/libmpdec/mpdecimal.c",
+      "path": "licenses/cpython-3.12.14-mpdecimal-notice.txt",
+      "sha256": "b07528d8b1dbf1e2d2741052996f0876e23342ce2d30d0effa39c5457716c25a",
+      "source_form": "verbatim initial complete license comment, excluding code",
+      "upstream_file_sha256": "4f89b8095e408a18deff79cfb605299e615bae747898eb105d8936064f7fb626"
+    },
+    {
+      "bytes": 1207,
+      "file": "cpython-3.12.14-hacl-notice.txt",
+      "origin_url": "https://raw.githubusercontent.com/python/cpython/v3.12.14/Modules/_hacl/Hacl_Hash_SHA3.c",
+      "path": "licenses/cpython-3.12.14-hacl-notice.txt",
+      "sha256": "998ce04fb8ad9dedb0bc1b44938f8c3dcf1089780fa105ce1c8c30fb5554d78c",
+      "source_form": "verbatim initial complete license comment, excluding code",
+      "upstream_file_sha256": "17c0db96d40d1849f02546d5f55428fa89b61b07748d5b5df45cec25c5f29c0f"
+    },
+    {
+      "bytes": 25066,
+      "file": "runtime-Python-LICENSE.txt",
+      "origin_member": "python/LICENSE.txt",
+      "path": "licenses/runtime-Python-LICENSE.txt",
+      "sha256": "886a0ead2d89030ee62dbff52b04e47ab91998341295bb9c56fb952b4e081c7a",
+      "source_form": "verbatim supplied runtime archive member"
+    },
+    {
+      "bytes": 2307,
+      "file": "runtime-Tk-license.terms",
+      "origin_member": "python/tcl/tk8.6/license.terms",
+      "path": "licenses/runtime-Tk-license.terms",
+      "sha256": "0d1e4405f6273f091732764ed89b57066be63ce64869be6c71ea337dc4f2f9b5",
+      "source_form": "verbatim supplied runtime archive member"
+    },
+    {
+      "bytes": 78016,
+      "file": "Pillow-12.3.0-LICENSE",
+      "origin_member": "pillow-12.3.0.dist-info/licenses/LICENSE",
+      "path": "licenses/Pillow-12.3.0-LICENSE",
+      "sha256": "4f7866a74802c6326f81faff59a56546b6aec2b10b91973e0e9308de95e79857",
+      "source_form": "verbatim supplied Pillow archive member"
+    },
+    {
+      "bytes": 1541,
+      "file": "src/pip/_vendor/idna/LICENSE.md",
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/idna/LICENSE.md",
+      "path": "licenses/pip25-vendor/idna/LICENSE.md",
+      "sha256": "a59f0b0ef3635874109a4461ca44ff7a70d50696e814767bfaf721d4c9b0db0f",
+      "source_form": "verbatim official pip25.0.1 source notice"
+    },
+    {
+      "bytes": 13936,
+      "file": "src/pip/_vendor/typing_extensions.LICENSE",
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/typing_extensions.LICENSE",
+      "path": "licenses/pip25-vendor/typing_extensions.LICENSE",
+      "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+      "source_form": "verbatim official pip25.0.1 source notice"
+    },
+    {
+      "bytes": 1115,
+      "file": "src/pip/_vendor/urllib3/LICENSE.txt",
+      "origin_url": "https://raw.githubusercontent.com/pypa/pip/25.0.1/src/pip/_vendor/urllib3/LICENSE.txt",
+      "path": "licenses/pip25-vendor/urllib3/LICENSE.txt",
+      "sha256": "c37bf186e27cf9dbe9619e55edfe3cea7b30091ceb3da63c7dacbe0e6d77907b",
+      "source_form": "verbatim official pip25.0.1 source notice"
+    }
+  ],
+  "publisher_signature_claimed": false,
+  "runtime_lock_sha256": "df5c34ee738a12844418596d468567561a3c7096a24c1abc266e07949715dd08",
+  "source_changes": "No runtime or wheel byte changed; only safe extraction and repackaging",
+  "task": "038S",
+  "version": 1
+}

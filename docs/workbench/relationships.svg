@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+<title id="title">Adventure object relationships and data flow</title>
+<desc id="desc">TerrainGenerator returns Terrain. LevelGenerator uses injected terrain and entity data to return LevelDefinition. The runtime supplies WorldSnapshot to AgentController, which returns WorldAction. The runtime checks that action before updating the next snapshot. These arrows are data flow, not inheritance.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#206b66"/></marker></defs>
+<rect width="1200" height="560" fill="#fffdf8"/>
+<g fill="#e9eee5" stroke="#b4c8bd" stroke-width="2">
+<rect x="30" y="70" width="225" height="85" rx="8"/><rect x="300" y="70" width="190" height="85" rx="8"/><rect x="545" y="70" width="240" height="85" rx="8"/><rect x="850" y="70" width="310" height="85" rx="8"/>
+<rect x="540" y="245" width="630" height="82" rx="8"/><rect x="30" y="400" width="240" height="95" rx="8"/><rect x="340" y="400" width="240" height="95" rx="8"/><rect x="650" y="400" width="205" height="95" rx="8"/><rect x="910" y="400" width="260" height="95" rx="8"/>
+</g>
+<g font-family="Segoe UI, sans-serif" fill="#263f42" text-anchor="middle">
+<text x="600" y="35" font-size="24" font-weight="bold">Relationships and data flow</text>
+<g font-size="22" font-weight="600"><text x="142" y="106">TerrainGenerator</text><text x="395" y="106">Terrain</text><text x="665" y="106">LevelGenerator</text><text x="1005" y="106">LevelDefinition</text>
+<text x="855" y="277">Character · Artifact · Enemy</text><text x="150" y="437">WorldSnapshot</text><text x="460" y="437">AgentController</text><text x="752" y="437">WorldAction</text><text x="1040" y="437">Runtime</text></g>
+<g font-size="17"><text x="142" y="134">specification + seed</text><text x="395" y="134">floor geometry</text><text x="665" y="134">injected terrain provider</text><text x="1005" y="134">immutable initial world</text><text x="855" y="305">public adapters → separate immutable definition values</text><text x="150" y="467">current read-only state</text><text x="460" y="467">decides one intention</text><text x="752" y="467">type + optional target</text><text x="1040" y="467">checks and applies it</text><text x="630" y="544">Next snapshot after the accepted action</text></g>
+</g>
+<g stroke="#206b66" stroke-width="3" fill="none" marker-end="url(#arrow)">
+<path d="M255 112H292"/><path d="M490 112H537"/><path d="M785 112H842"/><path d="M1005 245V163"/>
+<path d="M850 155V190H150V392"/><path d="M270 446H332"/><path d="M580 446H642"/><path d="M855 446H902"/><path d="M1040 495V520H150V503"/>
+</g>
+<text x="345" y="218" font-family="Segoe UI, sans-serif" font-size="17" fill="#566c6b">The initial level remains available in each snapshot</text>
+</svg>

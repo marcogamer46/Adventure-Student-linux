@@ -1,0 +1,2 @@
+# Optional viewer dependency tested with CPython 3.12.14 and Tk 8.6 on Windows.
+Pillow==12.3.0

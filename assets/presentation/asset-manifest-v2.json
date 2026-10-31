@@ -1,0 +1,164 @@
+{
+  "format": "ultra-expedition-assets",
+  "version": 2,
+  "cell": [
+    32,
+    32
+  ],
+  "projection": "top-down-orthogonal",
+  "anchor": [
+    16,
+    16
+  ],
+  "padding": 2,
+  "scaling": "camera-v2-source-resampling",
+  "animation": "one-pose-per-recorded-state-no-interpolation",
+  "overlay_layers": {
+    "visited": 25,
+    "patrol_indicator": 55,
+    "event": 70,
+    "grid_labels": 80
+  },
+  "provenance": {
+    "creator": "Tasks 033B/033C candidate pack: Codex-authored native environment/object/guardian pixels; preserved Task 033A explorer: OpenAI imagegen concept and Codex-authored normalized pixels",
+    "source": "Complete seven-sheet candidate: six new environment/object/guardian sheets authored at 32px with deterministic offline source-grid builders; no new generated concepts. Explorer is byte-identical to Task 033A, derived there from the supplied OpenAI-generated reference and built-in imagegen idle study. Geometric fallback remains available for missing/invalid sheets or unsupported display dependencies. Production and redistribution approval pending.",
+    "source_url": "",
+    "license": "LicenseRef-Project-Approval-Pending",
+    "redistribution_approved": false,
+    "production_art": false
+  },
+  "assets": {
+    "floor": {
+      "file": "pack/floor.png",
+      "sheet": [
+        32,
+        32
+      ],
+      "states": [
+        "idle"
+      ],
+      "directions": [
+        "none"
+      ],
+      "transparent": false,
+      "layer": 10,
+      "frames_per_pose": 1
+    },
+    "wall": {
+      "file": "pack/wall.png",
+      "sheet": [
+        32,
+        32
+      ],
+      "states": [
+        "idle"
+      ],
+      "directions": [
+        "none"
+      ],
+      "transparent": false,
+      "layer": 20,
+      "frames_per_pose": 1
+    },
+    "start": {
+      "file": "pack/start.png",
+      "sheet": [
+        32,
+        32
+      ],
+      "states": [
+        "idle"
+      ],
+      "directions": [
+        "none"
+      ],
+      "transparent": true,
+      "layer": 30,
+      "frames_per_pose": 1
+    },
+    "exit": {
+      "file": "pack/exit.png",
+      "sheet": [
+        32,
+        64
+      ],
+      "states": [
+        "available",
+        "accepted"
+      ],
+      "directions": [
+        "none"
+      ],
+      "transparent": true,
+      "layer": 31,
+      "frames_per_pose": 1
+    },
+    "artifact": {
+      "file": "pack/artifact.png",
+      "sheet": [
+        32,
+        32
+      ],
+      "states": [
+        "available"
+      ],
+      "directions": [
+        "none"
+      ],
+      "transparent": true,
+      "layer": 40,
+      "frames_per_pose": 1
+    },
+    "enemy": {
+      "file": "pack/enemy.png",
+      "sheet": [
+        128,
+        32
+      ],
+      "states": [
+        "idle"
+      ],
+      "directions": [
+        "north",
+        "east",
+        "south",
+        "west"
+      ],
+      "transparent": true,
+      "layer": 50,
+      "frames_per_pose": 1
+    },
+    "explorer": {
+      "file": "pack/explorer.png",
+      "sheet": [
+        128,
+        192
+      ],
+      "states": [
+        "idle",
+        "move",
+        "collect",
+        "engage",
+        "exit",
+        "failed"
+      ],
+      "directions": [
+        "north",
+        "east",
+        "south",
+        "west"
+      ],
+      "transparent": true,
+      "layer": 60,
+      "frames_per_pose": 1
+    }
+  },
+  "viewport": {
+    "name": "camera-v2",
+    "maximum_scale": 6,
+    "overview": "box-from-source",
+    "enlargement": "nearest-from-source",
+    "cache_entries": 128,
+    "cache_pixels": 1048576
+  }
+}

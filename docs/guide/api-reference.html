@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Public API reference</title><link rel="stylesheet" href="style.css"></head><body><div class="shell"><nav aria-label="On this page"><strong>Adventure guide</strong><ol><li><a href="#six-component-contracts">Six component contracts</a></li><li><a href="#coordinate-and-terrain-values">Coordinate and terrain values</a></li><li><a href="#generation-requests">Generation requests</a></li><li><a href="#immutable-definitions-and-adapters">Immutable definitions and adapters</a></li><li><a href="#complete-level-value">Complete level value</a></li><li><a href="#current-snapshot">Current snapshot</a></li><li><a href="#actions-and-legality">Actions and legality</a></li><li><a href="#diagnostic-values">Diagnostic values</a></li></ol></nav><main><div class="edition">Development practice edition</div><h1 id="public-api-reference">Public API reference</h1>
+<p>Import supported values and contracts from <code>src.api</code>. <code>API_VERSION</code> is the string <code>&quot;v1&quot;</code>. The fixed facade exports 26 names; the guide adds no API, student callback, or public class requirement. Read <a href="../../GUIDE.html#meet-the-objects">Meet the objects</a> for responsibilities and data flow before using this reference.</p>
+<h2 id="six-component-contracts">Six component contracts</h2>
+<p>The concrete constructors belong to your six student classes. The exported Protocols describe their instance interfaces; implementing a matching interface is sufficient. Private helpers are allowed.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Student constructor</th>
+<th>Required member</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CharacterContract</code></td>
+<td><code>Character(agent_id)</code></td>
+<td>Read-only <code>agent_id: str</code></td>
+</tr>
+<tr>
+<td><code>ArtifactContract</code></td>
+<td><code>Artifact(artifact_id, position, value)</code></td>
+<td>Read-only <code>artifact_id: str</code>, <code>position: Position</code>, <code>value: int</code></td>
+</tr>
+<tr>
+<td><code>EnemyContract</code></td>
+<td><code>Enemy(enemy_id, position, encounter_penalty)</code></td>
+<td>Read-only <code>enemy_id: str</code>, <code>position: Position</code>, <code>encounter_penalty: int</code></td>
+</tr>
+<tr>
+<td><code>AgentControllerContract</code></td>
+<td><code>AgentController()</code></td>
+<td><code>choose_action(self, state: WorldSnapshot, agent_id: str) -&gt; WorldAction</code></td>
+</tr>
+<tr>
+<td><code>TerrainGeneratorContract</code></td>
+<td><code>TerrainGenerator()</code></td>
+<td><code>generate_terrain(self, specification: TerrainGenerationSpec, seed: int) -&gt; Terrain</code></td>
+</tr>
+<tr>
+<td><code>LevelGeneratorContract</code></td>
+<td><code>LevelGenerator(terrain_generator)</code></td>
+<td><code>generate_level(self, specification: LevelSpecification, seed: int) -&gt; LevelDefinition</code></td>
+</tr>
+</tbody></table></div>
+<p>Entity components expose data, while the framework applies state changes. Generators receive an explicit integer seed. LevelGenerator must use the injected terrain dependency through its stated callback. Supplied-world controller execution does not require a student-generated world. See <a href="../EDITABLE_FILES.md">editable files</a> for the exact workflow prerequisites and allowed boundary.</p>
+<h2 id="coordinate-and-terrain-values">Coordinate and terrain values</h2>
+<p>The data classes below are frozen and slotted. Their constructors validate local types and field shape; complete relationships and original-specification constraints are checked separately by the host. Integers must be actual <code>int</code> values, not booleans or coerced strings. Canonical value fields require the exact API types, rather than lookalike dictionaries or foreign subclasses.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Constructor fields</th>
+<th>Helpers and constraints</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Position</code></td>
+<td><code>Position(row: int, column: int)</code></td>
+<td>Zero-based coordinate convention. <code>manhattan_distance(other)</code> returns the sum of absolute coordinate differences. Construction itself permits negative coordinates; in-bounds validation is separate.</td>
+</tr>
+<tr>
+<td><code>Terrain</code></td>
+<td><code>Terrain(terrain_rows: tuple[str, ...])</code></td>
+<td>Nonempty rectangular rows, each containing only <code>#</code> and <code>.</code>. <code>rows</code> and <code>columns</code> are read-only derived properties. <code>is_in_bounds(position)</code> checks dimensions; <code>is_traversable(position)</code> checks in-bounds floor geometry.</td>
+</tr>
+</tbody></table></div>
+<p>The <code>...</code> inside <code>tuple[str, ...]</code> is type notation for a variable-length tuple, not an omitted executable argument. All runnable examples in the guide provide concrete values. S/E in text diagrams are endpoint overlays; they are not terrain symbols or a parsing assignment. <code>is_traversable</code> does not check enemy occupancy, patrol timing, or action legality.</p>
+<p><code>TerrainTopology</code> has four members: <code>GENERAL</code>, <code>STRAIGHT_PATH</code>, <code>BENT_PATH</code>, and <code>BRANCHING_TREE</code>. Enum values use the corresponding uppercase strings. Topology and complete graph validity belong to specification validation, not merely to constructing a rectangular Terrain.</p>
+<h2 id="generation-requests">Generation requests</h2>
+<p><code>TerrainGenerationSpec</code> requires keyword arguments. The only defaulted field is <code>topology=TerrainTopology.GENERAL</code>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type and meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>rows</code>, <code>columns</code></td>
+<td>Positive integers; exact dimensions</td>
+</tr>
+<tr>
+<td><code>min_open_tiles</code>, <code>max_open_tiles</code></td>
+<td>Nonnegative integers in ordered inclusive bounds, fitting the board area</td>
+</tr>
+<tr>
+<td><code>max_attempts</code></td>
+<td>Positive integer generation budget</td>
+</tr>
+<tr>
+<td><code>topology</code></td>
+<td>Canonical <code>TerrainTopology</code></td>
+</tr>
+</tbody></table></div>
+<p><code>LevelSpecification</code> also requires keyword arguments. Every field below is required; it has no omitted optional field group.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Field or fields</th>
+<th>Type and meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>level_id</code>, <code>profile_id</code>, <code>agent_id</code></td>
+<td>Nonempty already-trimmed strings identifying the request</td>
+</tr>
+<tr>
+<td><code>terrain_spec</code></td>
+<td>Canonical <code>TerrainGenerationSpec</code> for the injected provider</td>
+</tr>
+<tr>
+<td><code>artifact_count</code>, <code>enemy_count</code></td>
+<td>Exact nonnegative counts</td>
+</tr>
+<tr>
+<td><code>artifact_value_min</code>, <code>artifact_value_max</code></td>
+<td>Inclusive nonnegative value bounds, minimum no greater than maximum</td>
+</tr>
+<tr>
+<td><code>enemy_penalty_min</code>, <code>enemy_penalty_max</code></td>
+<td>Inclusive nonnegative penalty bounds</td>
+</tr>
+<tr>
+<td><code>min_route_moves</code>, <code>max_route_moves</code></td>
+<td>Inclusive bounds on shortest geometric endpoint movement distance, excluding EXIT and encounters</td>
+</tr>
+<tr>
+<td><code>min_branch_tiles</code></td>
+<td>Nonnegative minimum number of floor tiles with at least three orthogonal floor neighbors</td>
+</tr>
+<tr>
+<td><code>max_dead_end_tiles</code></td>
+<td>Nonnegative maximum number of floor tiles with one orthogonal floor neighbor</td>
+</tr>
+<tr>
+<td><code>require_alternate_path</code></td>
+<td>Boolean requirement for an alternate endpoint path</td>
+</tr>
+<tr>
+<td><code>allow_entity_overlap</code></td>
+<td>Boolean placement permission; it does not make occupied enemy tiles enterable</td>
+</tr>
+<tr>
+<td><code>allow_entities_on_endpoints</code></td>
+<td>Boolean placement permission</td>
+</tr>
+<tr>
+<td><code>max_turns</code></td>
+<td>Positive integer logical hard cap H</td>
+</tr>
+<tr>
+<td><code>max_attempts</code></td>
+<td>Positive integer level-generation attempt budget</td>
+</tr>
+</tbody></table></div>
+<p>Original family rules can add constraints, such as leaf endpoints in the public tree families. Do not weaken the input request to make a candidate pass. An exhausted finite attempt budget means a generation attempt failed to produce an acceptable candidate within its budget; it is not a mathematical impossibility proof.</p>
+<p>The workbench accepts public seeds in the inclusive range 0 through <code>2**31 - 1</code>. Same implementation, specification, dependency, and seed must reproduce its own result. Different implementations may generate different valid worlds, and different seeds need not always produce distinct worlds.</p>
+<h2 id="immutable-definitions-and-adapters">Immutable definitions and adapters</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Constructor</th>
+<th>Local constraints</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CharacterDefinition</code></td>
+<td><code>CharacterDefinition(agent_id)</code></td>
+<td>Nonempty trimmed string</td>
+</tr>
+<tr>
+<td><code>ArtifactDefinition</code></td>
+<td><code>ArtifactDefinition(artifact_id, position, value)</code></td>
+<td>Trimmed ID, canonical Position, nonnegative integer value</td>
+</tr>
+<tr>
+<td><code>EnemyDefinition</code></td>
+<td><code>EnemyDefinition(enemy_id, position, encounter_penalty)</code></td>
+<td>Trimmed ID, canonical Position, nonnegative integer penalty</td>
+</tr>
+<tr>
+<td><code>PatrolDefinition</code></td>
+<td><code>PatrolDefinition(enemy_id=..., positions=..., initial_phase=0)</code></td>
+<td>Keyword-only; nonempty tuple of Positions; phase indexes that tuple</td>
+</tr>
+<tr>
+<td><code>EnemyObservation</code></td>
+<td><code>EnemyObservation(enemy_id=..., position=..., phase=...)</code></td>
+<td>Keyword-only; position is Position or None; phase is a nonnegative integer or None</td>
+</tr>
+</tbody></table></div>
+<p>The last two constructor cells are signature notation, not executable examples. <code>PatrolDefinition.period</code> is a read-only derived count. Patrol schedules are visible supplied-world values, not a required student generation output. An active static enemy observation has its current Position and <code>phase=None</code>; a defeated static enemy has <code>position=None</code>. A visible patrol observation gives its current Position and phase. Full consistency depends on the admitted world.</p>
+<p>The following complete value expressions are constructor examples only. They do not constitute a complete admitted level or a student implementation:</p>
+<pre><code class="language-python">from src.api import (
+    ArtifactDefinition, CharacterDefinition, EnemyDefinition, EnemyObservation,
+    PatrolDefinition, Position, WorldAction, WorldActionType,
+)
+
+character_data = CharacterDefinition(&quot;explorer&quot;)
+artifact_data = ArtifactDefinition(&quot;artifact-0&quot;, Position(0, 2), 25)
+enemy_data = EnemyDefinition(&quot;enemy-0&quot;, Position(0, 1), 6)
+patrol_data = PatrolDefinition(
+    enemy_id=&quot;enemy-0&quot;,
+    positions=(Position(0, 2), Position(0, 2), Position(1, 2)),
+    initial_phase=1,
+)
+observed_patrol = EnemyObservation(
+    enemy_id=&quot;enemy-0&quot;, position=Position(0, 2), phase=1,
+)
+collect_value = WorldAction(WorldActionType.COLLECT, target_id=&quot;artifact-0&quot;)
+engage_value = WorldAction(WorldActionType.ENGAGE, target_id=&quot;enemy-0&quot;)
+wait_value = WorldAction.wait()
+exit_value = WorldAction(WorldActionType.EXIT)
+</code></pre>
+<p>The constructor for a valid action value does not prove that it is legal in the current game state. The patrol and static-enemy examples above are separate field illustrations, not an instruction to engage a patrol.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Supplied adapter</th>
+<th>Input interface</th>
+<th>Detached result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>to_character_definition(source)</code></td>
+<td>CharacterContract</td>
+<td>CharacterDefinition</td>
+</tr>
+<tr>
+<td><code>to_artifact_definition(source)</code></td>
+<td>ArtifactContract</td>
+<td>ArtifactDefinition</td>
+</tr>
+<tr>
+<td><code>to_enemy_definition(source)</code></td>
+<td>EnemyContract</td>
+<td>EnemyDefinition</td>
+</tr>
+</tbody></table></div>
+<p>Each adapter captures the required properties once, validates the captured values, and constructs detached immutable data. Missing/failing getters and invalid values produce <code>ContractViolation</code>. Implementing an entity class remains required even though a typed-data illustration directly constructs its result type.</p>
+<h2 id="complete-level-value">Complete level value</h2>
+<p><code>LevelDefinition</code> is keyword-only. It detaches terrain, coordinates, and definitions; entity tuples are sorted by their IDs. The field list is:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>level_id</code>, <code>profile_id</code></td>
+<td>Trimmed nonempty strings</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>Nonnegative integer</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>terrain</code></td>
+<td>Terrain</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>start</code>, <code>exit</code></td>
+<td>Position</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>character</code></td>
+<td>CharacterDefinition</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>artifacts</code></td>
+<td>Tuple of ArtifactDefinition</td>
+<td><code>()</code></td>
+</tr>
+<tr>
+<td><code>enemies</code></td>
+<td>Tuple of EnemyDefinition</td>
+<td><code>()</code></td>
+</tr>
+<tr>
+<td><code>patrols</code></td>
+<td>Tuple of PatrolDefinition</td>
+<td><code>()</code></td>
+</tr>
+</tbody></table></div>
+<p>The <a href="../../examples/guide/opening_typed_values.py">opening typed values</a> provide a full executable LevelSpecification and LevelDefinition. The <a href="../../examples/guide/opening-canonical-level.json">opening canonical level</a> is a stored representation. The <a href="../../examples/guide/levels/reach-the-exit.json">prepared input</a> wraps stored level data with its original request, configuration, and public admission proof. Callbacks receive typed objects, not these JSON envelopes.</p>
+<p>Local construction does not establish unique IDs, connected floor, legal placement, original-specification compliance, or instructor eligibility. Public admission and local integrity are distinct from grading, certification, authorship, and publication.</p>
+<h2 id="current-snapshot">Current snapshot</h2>
+<p><code>WorldSnapshot</code> is keyword-only immutable callback input. Initial level definitions persist after collection or engagement. Use current position, removed IDs, and observations to determine the current situation.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type and meaning</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>level</code></td>
+<td>LevelDefinition, including initial definitions and visible schedules</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>agent_position</code></td>
+<td>Current Position</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>turn</code></td>
+<td>Nonnegative accepted-action count</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>collected_artifact_ids</code></td>
+<td>Tuple of trimmed ID strings; locally sorted</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>defeated_enemy_ids</code></td>
+<td>Tuple of trimmed ID strings; locally sorted</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>base_points</code></td>
+<td>Nonnegative integer B</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>deduction_rate</code></td>
+<td>Nonnegative integer r</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>baseline_cost</code></td>
+<td>Positive integer L</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>zero_score_excess</code></td>
+<td>Positive integer Q</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>max_turns</code></td>
+<td>Positive integer H</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>deadline_turn</code></td>
+<td>Positive integer D or None</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>allowed_actions</code></td>
+<td>Tuple of distinct WorldActionType values</td>
+<td>Four movement directions, WAIT, EXIT</td>
+</tr>
+<tr>
+<td><code>enemy_observations</code></td>
+<td>Tuple of EnemyObservation, sorted by ID</td>
+<td><code>()</code></td>
+</tr>
+</tbody></table></div>
+<p>The constructor default vocabulary is not a table of what the current public runtime enables. Actual public snapshots also enable COLLECT and ENGAGE, including in the entity-free case. INTERACT is absent. Read the snapshot and check destinations/targets; an enabled kind does not make every use legal.</p>
+<p>Read-only convenience properties are <code>level_id</code>, <code>seed</code>, <code>agent_id</code>, <code>terrain</code>, <code>rows</code>, <code>columns</code>, <code>start_position</code>, and <code>exit_position</code>. <code>is_in_bounds(position)</code> and <code>is_traversable(position)</code> delegate to terrain geometry. There is no mutable position setter, score accumulator property, movement method, or public <code>patrol_turn</code> field. Replay&#39;s saved patrol-clock metadata helps describe terminal frames but does not extend this API. No post-completion snapshot is sent to another controller callback.</p>
+<h2 id="actions-and-legality">Actions and legality</h2>
+<p><code>WorldAction(action_type, *, target_id=None)</code> requires a canonical WorldActionType. <code>target_id</code>, when supplied, must be a nonempty trimmed string. <code>WorldAction.wait()</code> constructs a WAIT value.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Enum member</th>
+<th>Current public rule</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>MOVE_NORTH</code></td>
+<td>Row minus one; destination must be in-bounds floor and unoccupied by an undefeated enemy at action start</td>
+</tr>
+<tr>
+<td><code>MOVE_SOUTH</code></td>
+<td>Row plus one, with the same checks</td>
+</tr>
+<tr>
+<td><code>MOVE_WEST</code></td>
+<td>Column minus one, with the same checks</td>
+</tr>
+<tr>
+<td><code>MOVE_EAST</code></td>
+<td>Column plus one, with the same checks</td>
+</tr>
+<tr>
+<td><code>COLLECT</code></td>
+<td>Target the ID of an available artifact on the current tile; award once and remain in place</td>
+</tr>
+<tr>
+<td><code>ENGAGE</code></td>
+<td>Target an undefeated orthogonally adjacent static enemy; add its penalty once and remain in place</td>
+</tr>
+<tr>
+<td><code>WAIT</code></td>
+<td>Use one turn without movement; a later patrol step can still collide</td>
+</tr>
+<tr>
+<td><code>EXIT</code></td>
+<td>Return while on the exit; accepted EXIT uses a turn and completes before another patrol movement</td>
+</tr>
+<tr>
+<td><code>INTERACT</code></td>
+<td>Defined enum member but disabled in these public gameplay rules</td>
+</tr>
+</tbody></table></div>
+<p>Movement, WAIT, and EXIT require no target. COLLECT and ENGAGE require the correct target ID. Patrols cannot be engaged. Illegal actions terminate immediately without a replacement WAIT, accepted-turn increment, or patrol advance. A bare string such as <code>&quot;EXIT&quot;</code>, None, or an arbitrary object is malformed callback output.</p>
+<p>For patrol execution, action validation uses occupancy at action start. After a non-EXIT accepted action, patrol movement occurs before collision, deadline, and hard-cap checks. The <a href="../../GUIDE.html#keep-extending-the-same-solution">patrol guidance</a> explains where to find each selected world's complete timing rules. The <a href="../../GUIDE.html#know-what-an-action-does">action and points overview</a> explains current metrics; Help in the workbench provides the full formula and actual limits.</p>
+<h2 id="diagnostic-values">Diagnostic values</h2>
+<p><code>ContractViolation(component: str, field: str, reason: str)</code> exposes read-only <code>component</code>, <code>field</code>, and <code>reason</code>. <code>GenerationFailure(component: str, reason: str)</code> exposes read-only <code>component</code> and <code>reason</code>. All diagnostic constructor fields require strings. They describe a failed contract or generation attempt; they are not grades or a proof that a world cannot be solved.</p>
+<p>The 26 exports are API_VERSION; Position; Terrain; WorldActionType; WorldAction; WorldSnapshot; the six Contracts above; TerrainTopology; TerrainGenerationSpec; LevelSpecification; LevelDefinition; CharacterDefinition; ArtifactDefinition; EnemyDefinition; PatrolDefinition; EnemyObservation; the three adapters above; ContractViolation; and GenerationFailure. The implementation boundary remains the same throughout <a href="../../GUIDE.html#seven-base-cases">the seven base cases and further workbench variations</a>.</p>
+<p class="source">Canonical source: <a href="../API_REFERENCE.md">docs/API_REFERENCE.md</a>. This document uses only local files and needs no JavaScript.</p></main></div></body></html>
